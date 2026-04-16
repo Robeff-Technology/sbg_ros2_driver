@@ -134,6 +134,7 @@ void MessagePublisher::initPublisher(rclcpp::Node& ref_ros_node_handle, SbgEComM
 
       case SBG_ECOM_LOG_EKF_QUAT:
         sbg_ekf_quat_pub_ = ref_ros_node_handle.create_publisher<sbg_driver::msg::SbgEkfQuat>(ref_output_topic, max_messages_);
+        autoware_orientation_pub_ = ref_ros_node_handle.create_publisher<autoware_sensing_msgs::msg::GnssInsOrientationStamped>("/orientation", max_messages_);
         break;
 
       case SBG_ECOM_LOG_EKF_NAV:
@@ -626,6 +627,20 @@ void MessagePublisher::publish(SbgEComClass sbg_msg_class, SbgEComMsgId sbg_msg_
         {
           sbg_ekf_quat_message_ = message_wrapper_.createSbgEkfQuatMessage(ref_sbg_log.ekfQuatData);
           sbg_ekf_quat_pub_->publish(sbg_ekf_quat_message_);
+
+          if (autoware_orientation_pub_)
+          {
+            autoware_sensing_msgs::msg::GnssInsOrientationStamped autoware_orientation_message;
+
+            autoware_orientation_message.header = sbg_ekf_quat_message_.header;
+            autoware_orientation_message.orientation.orientation = sbg_ekf_quat_message_.quaternion;
+            autoware_orientation_message.orientation.rmse_rotation_x = static_cast<float>(sbg_ekf_quat_message_.accuracy.x);
+            autoware_orientation_message.orientation.rmse_rotation_y = static_cast<float>(sbg_ekf_quat_message_.accuracy.y);
+            autoware_orientation_message.orientation.rmse_rotation_z = static_cast<float>(sbg_ekf_quat_message_.accuracy.z);
+
+            autoware_orientation_pub_->publish(autoware_orientation_message);
+          }
+
           processRosImuMessage();
           processRosVelMessage();
         }

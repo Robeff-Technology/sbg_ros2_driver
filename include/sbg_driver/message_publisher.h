@@ -35,6 +35,7 @@
 // Project headers
 #include <config_store.h>
 #include <message_wrapper.h>
+#include <autoware_sensing_msgs/msg/gnss_ins_orientation_stamped.hpp>
 
 namespace sbg
 {
@@ -85,6 +86,7 @@ private:
   rclcpp::Publisher<sensor_msgs::msg::TimeReference, std::allocator<void>>::SharedPtr   utc_reference_pub_;
   rclcpp::Publisher<sensor_msgs::msg::NavSatFix, std::allocator<void>>::SharedPtr       nav_sat_fix_pub_;
   rclcpp::Publisher<nav_msgs::msg::Odometry, std::allocator<void>>::SharedPtr           odometry_pub_;
+  rclcpp::Publisher<autoware_sensing_msgs::msg::GnssInsOrientationStamped, std::allocator<void>>::SharedPtr autoware_orientation_pub_;
 
   rclcpp::Publisher<nmea_msgs::msg::Sentence, std::allocator<void>>::SharedPtr          nmea_gga_pub_;
 

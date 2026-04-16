@@ -15,6 +15,7 @@ find_package(tf2_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(nmea_msgs REQUIRED)
 find_package(builtin_interfaces REQUIRED)
+find_package(autoware_sensing_msgs REQUIRED)
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -34,6 +35,7 @@ set (USED_LIBRARIES
   tf2_msgs
   tf2_geometry_msgs
   nmea_msgs
+  autoware_sensing_msgs
 )
 
 set (msg_files
@@ -185,6 +187,7 @@ ament_export_dependencies(
     tf2_ros
     tf2_msgs
     tf2_geometry_msgs
+    autoware_sensing_msgs
     rosidl_default_runtime
 )
 
