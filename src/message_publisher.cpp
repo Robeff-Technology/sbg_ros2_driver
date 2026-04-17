@@ -225,7 +225,7 @@ void MessagePublisher::defineRosStandardPublishers(rclcpp::Node& ref_ros_node_ha
 
   if (sbg_imu_data_pub_ && sbg_ekf_quat_pub_)
   {
-    imu_pub_ = ref_ros_node_handle.create_publisher<sensor_msgs::msg::Imu>("imu/data", max_messages_);
+    imu_pub_ = ref_ros_node_handle.create_publisher<sensor_msgs::msg::Imu>("imu/imu_data", max_messages_);
   }
   else
   {

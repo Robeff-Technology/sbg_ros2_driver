@@ -12,9 +12,9 @@
 
     odometry:
       # Enable ROS odometry messages.
-      enable: true
+      enable: false
       # Publish odometry transforms.
-      publishTf: true
+      publishTf: false
       # Odometry frame IDs.
       odomFrameId: "odom"
       baseFrameId: "base_link"
