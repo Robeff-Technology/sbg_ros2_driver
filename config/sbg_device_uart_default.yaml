@@ -127,7 +127,7 @@
       # 7 Synchronization is done using SYNC_OUT_B pin
       gnss1ModuleSyncAssignment: 0
       # RTCM input port assignment for Ellipse-N DGPS (see gnss1ModulePortAssignment for values)
-      rtcmPortAssignment: 255
+      rtcmPortAssignment: 1
       # Odometer module pin assignment
       # 0 Odometer is disabled
       # 1 Odometer connected only to ODO_A (unidirectional).
@@ -322,7 +322,7 @@
 
     rtcm:
       # Should ros driver subscribe to RTCM topic
-      subscribe: true
+      subscribe: false
       # Topic on which RTCM is published
       topic_name: rtcm
       # Namespace where topic is published
